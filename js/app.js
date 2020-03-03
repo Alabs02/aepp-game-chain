@@ -122,8 +122,6 @@ window.addEventListener('load', async () => {
 
 jQuery("#betTemplate").on("click", ".betBtn", async function(event){
     const value = $('.betAmount').val();
-    // let oddOne = $('#oneOdd').val();
-    // let oddTwo = $('#twoOdd').val();
     const dataIndex = event.target.id;
     const foundIndex = betArray.findIndex(bet => bet.i == dataIndex);
     betArray[foundIndex].betsPlaced += parseInt(value, 10);
@@ -146,9 +144,9 @@ $('#reportBtn').click(function() {
         c_report = ($('#report').val());
 
         reportArray.push({
-        respondentName: c_name,
-        respondentReport: c_report
-    })
+            respondentName: c_name,
+            respondentReport: c_report
+        })
     renderReports();
 });
 
@@ -162,17 +160,16 @@ $('#createBtn').click(async function() {
         
 
         betArray.push({
-        gameType    : type,
-        timeStamp   : time,
-        teamOne     : one,
-        teamTwo     : two,
-        gameUrl     : url,
-        i           : betArray.length+1,
-        oneOdd      : 0,
-        twoOdd      : 0,
-        betsPlaced  : 0
-        
-    })
+            gameType    : type,
+            timeStamp   : time,
+            teamOne     : one,
+            teamTwo     : two,
+            gameUrl     : url,
+            i           : betArray.length+1,
+            oneOdd      : 0,
+            twoOdd      : 0,
+            betsPlaced  : 0
+        })
     renderBets();
 });
 
