@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bet | Daepp</title>
+   <link rel="stylesheet" href="./css/materialize.min.css">
+   <link rel="stylesheet" href="./css/material-icons.css">
+   <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body class="grey lighten-2">
+    <div id="loader" class="section">
+        <div id="progress">
+        </div>
+        <p id="load">Loading...</p>
+    </div>
+                
+    <div id="app">
+        <nav class="nav-extended indigo darken-2">
+            <div class="nav-wrapper">
+                <div class="container">
+                    <a href="./index.html" class="brand-logo size center">Gamble<span class="light size">Chain</span></a>
+                    <a href="#" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                </div>
+            </div>
+
+            <div class="nav-content">
+                <br><br><br><br>
+            </div>
+        </nav>
+  
+
+        <div class="row">
+            <div class="col s12 m12">
+                <div id="card" class="card center">
+                    <div class="card-content center">
+                        <span class="card-title blue-grey-text text-darken-1">Create Bet</span>
+                    
+                        <div class="row">
+                            <form class="col s12">
+                                <div class="row">
+                                <div class="input-field col s6">
+                                   <select id="gameType">
+                                       <option value="" selected disabled >Select Game Type</option>
+                                       <option  >BasketBall</option>
+                                       <option  >FootBall</option>
+                                       <option  >Long Tennis</option>
+                                       <option  >Short Tennis</option>
+                                   </select>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input  id="timeStamp" type="number" class="validate" required>
+                                    <label for="timeStamp">Time Frame</label>
+                                </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input id="teamOne" type="text" class="validate" required>
+                                        <label for="teamOne">First Team</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input  id="teamTwo" type="text" class="validate" required>
+                                        <label for="teamTwo">Second Team</label>
+                                    </div>
+                                </div>
+    
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input id="gameUrl" class="validate" placeholder="Team Url" required>
+                                    </div>
+                                    <span>eg player 1 vs player 2</span>
+                                </div>
+                            </form>
+
+                            <div>
+                                <a id="createBtn"  class="btn purple waves-effect waves-light large ">Create</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div  id="betTemplate">
+           
+        </div>
+
+        <script id="template" type="x-tmpl-mustache">
+            {{#betArray}}
+                <div class="row center">
+                    <div class="col s12 m8">
+                        <div class="card center">
+                            <div class="card-image">
+                                <img src="{{ gameUrl }}" alt="" class="responsive-img">
+                                <span id="result" class="card-title title">{{ gameType }}</span>
+                            </div>
+
+                            <div class="card-content">
+                                <span class="card-title purple-text text-darken-2">{{ teamOne }}</span> VS <span class="card-title purple-text text-darken-2">{{ teamTwo }}</span>
+                                <div>
+                                    <p class="grey--text text--darken-3">Time in Hours: {{ timeStamp }}</p>
+                                </div>
+                                <div>
+                                    <h5 class="blue-grey-text text-darken-1">Bets Placed: {{ betsPlaced }} aettos</h5>
+                                </div>
+                                <div>
+                                    <div class="row">
+                                        <div class="col s6 m6">
+                                            <span class="font" id="oneOdd">Team 1 odd:  {{ oneOdd }}</span>
+                                        </div>
+
+                                        <div class="col s6 m6">
+                                            <span class="font" id="twoOdd">Team 2 odd: {{ twoOdd }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                                <div class="row">
+                                    <div class="input-field col s6 m6">
+                                        <input id="teamOneOdd" type="number" class="validate" placeholder="team 1" required>
+                                    </div>
+                                    <div class="input-field col s6 m6">
+                                        <input id="teamTwoOdd" type="number" class="validate" placeholder="team 2" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="input-field">
+                                    <input  type="number" class="validate betAmount" placeholder="bet in aettos" id={{ i }}>
+                                </div>
+                                <div class="card-actions">
+                                    <button id={{ i }} class="btn grey darken-3 waves-effect waves-light betBtn large">Bet</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {{/betArray}}
+        </script>
+
+    </div>
+    </div>  
+    
+    <section id="reportApp" class="container section">
+        <div class="card center">
+            <span class="card-title">Make a comment</span>
+            <div class="container">
+                <div class="commentSection">
+                    <div class="input-field col s12">
+                        <input  id="author" type="text" class="validate">
+                        <label for="author">Full Name</label>
+                    </div>
+
+                    <div class="input-field col s12">
+                        <textarea id="report" placeholder="Make your comments and tag @Nameofgame" class="materialize-textarea"></textarea>
+                    </div>
+
+                    <div class="card-actions">
+                        <div>
+                            <button id="reportBtn" class="btn purple waves-effect waves-light"><i class="material-icons right">send</i>Report</button>
+                        </div><br><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="reportBody" class="card">
+           
+        </div>
+
+        <script id="reportTemplate" type="x-tmpl-mustache">
+            {{#reportArray}}
+                <div class="card-content">
+                    <span class="card-title">{{ respondentName }}</span>
+                    <p>{{ respondentReport }}</p>
+                </div><br>
+            {{/reportArray}}
+        </script>
+        
+    </section>
+    
+    
+    <script src="./js/jquery-3.4.1.min.js"></script>
+    <script src="https://unpkg.com/@aeternity/aepp-sdk@6.1.2/dist/aepp-sdk.browser-script.js"></script>
+    <script src="./js/mustache.min.js"></script>
+    <script src="./js/materialize.min.js"></script>
+    <script src="./js/app.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('select').formSelect();
+        });
+    </script>
+</body>
+</html>
